@@ -11,6 +11,7 @@ supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 
 from fastapi import FastAPI, Depends, Header, HTTPException
+from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Literal
@@ -94,10 +95,7 @@ def update_complaint_status(
 
 @app.get("/")
 def home():
-    return {
-        "message": "Canteen Complaint API is running!",
-        "status": "success"
-    }
+    return RedirectResponse(url="/app")
 
 @app.get("/foods")
 def get_foods():
